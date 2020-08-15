@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap");
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -9,31 +10,49 @@ html {
   font-size: 62.5%;
 }
 
+body {
+  font-family: "Titillium Web", sans-serif;
+  background: url("../../img/gradient1.jpg") no-repeat center center/cover;
+  min-height: 100vh;
+}
+
 .container {
-  max-width: 50rem;
-  margin: 0 auto;
-  border: 1px solid black;
-  min-height: 50rem;
-  background: #999;
+  min-width: 70rem;
+  min-height: 70rem;
+  background: #eee;
+  position: relative;
+  -webkit-box-shadow: 0 0.8rem 1.2rem rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0.8rem 1.2rem rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
 .container header {
-  background: blue;
-  padding: 2rem;
+  padding: 3.2rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  background: -webkit-gradient(linear, left top, right top, from(rgba(250, 217, 97, 0.8)), to(rgba(247, 107, 28, 0.8)));
+  background: linear-gradient(to right, rgba(250, 217, 97, 0.8), rgba(247, 107, 28, 0.8));
+  -webkit-box-shadow: 0 0.8rem 1.2rem rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0.8rem 1.2rem rgba(0, 0, 0, 0.4);
 }
 
 .container header h1 {
   font-size: 3.2rem;
+  font-weight: 400;
 }
 
 .container header h2 {
-  font-size: 2.4rem;
+  font-size: 3.2rem;
+  font-weight: 500;
 }
 
 .container .todo-list {
@@ -41,11 +60,13 @@ html {
 }
 
 .container .todo-list h3 {
-  font-size: 2.2rem;
+  font-size: 3rem;
+  font-weight: 400;
 }
 
 .container .todo-list p {
-  font-size: 1.8rem;
+  font-size: 2.6rem;
+  text-align: right;
 }
 
 .container .todo-list .todo-div {
@@ -55,8 +76,15 @@ html {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  background: #ccc;
+  background: orange;
   padding: 0.4rem 0.6rem;
+  margin-bottom: 1rem;
+  -webkit-box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.4);
+}
+
+.container .todo-list .todo-div .todo-text {
+  margin-left: 0.8rem;
 }
 
 .container .todo-list .todo-div .check-true,
@@ -64,6 +92,8 @@ html {
   font-size: 3.4rem;
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
+  margin-top: 0.8rem;
+  color: #111;
 }
 
 .container .todo-list .todo-div .check-true:hover,
@@ -71,12 +101,9 @@ html {
   color: #106e4f;
 }
 
-.container .todo-list .todo-div .check-false {
-  color: #14bede;
-}
-
 .container .todo-list .todo-div .trash {
   font-size: 2rem;
+  margin-left: 1rem;
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
 }
@@ -86,10 +113,95 @@ html {
 }
 
 .container .todo-list .todo-div h4 {
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 .container .todo-list .todo-div p {
+  margin-left: 1.2rem;
+  font-size: 1.6rem;
+}
+
+.add-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 4rem;
+  background: orange;
+  -webkit-box-shadow: 0 0.8rem 1.2rem rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0.8rem 1.2rem rgba(0, 0, 0, 0.4);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  min-width: 40rem;
+  text-align: center;
+}
+
+.add-popup h2 {
+  font-size: 3rem;
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: 0.1rem;
+}
+
+.add-popup div {
+  padding: 1rem 0;
+}
+
+.add-popup div label {
+  display: block;
   font-size: 2rem;
+  text-align: left;
+}
+
+.add-popup div input {
+  width: 100%;
+  font-size: 1.6rem !important;
+  padding: 0.6rem;
+}
+
+.add-popup div textarea {
+  width: 100%;
+  height: 10rem;
+  padding: 0.6rem;
+}
+
+.add-popup .priority {
+  padding: 0;
+}
+
+.add-popup .priority h5 {
+  font-size: 2.4rem;
+  font-weight: 400;
+  text-align: center;
+}
+
+.add-popup .priority label {
+  font-size: 1.8rem !important;
+  display: inline-block !important;
+}
+
+.add-popup .priority input {
+  width: 10% !important;
+}
+
+.add-popup .submit-add {
+  margin-top: 1rem !important;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0.6rem 0.8rem;
+  font-size: 1.6rem;
+  background: #eee;
+  color: #eee;
+  -webkit-box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.4);
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  background: #106e4f;
+}
+
+.add-popup .submit-add:hover {
+  -webkit-box-shadow: 0 0.8rem 1.2rem rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0.8rem 1.2rem rgba(0, 0, 0, 0.4);
+  -webkit-transform: translateY(-0.1rem);
+          transform: translateY(-0.1rem);
 }
 /*# sourceMappingURL=main.css.map */

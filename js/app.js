@@ -1,17 +1,47 @@
 // Hold the todos to be rendered on the screen
-const todoList = [
-  { name: "walk the dog", description: "Walk Smokey", completed: true, id: 0 },
-];
+const todoList = [];
 
 // Add todos
+const popup = document.querySelector(".add-popup");
+
+document.querySelector(".add-todo").addEventListener("click", () => {
+  popup.style.display = "block";
+});
+
+document.querySelector(".submit-add").addEventListener("click", (e) => {
+  e.preventDefault();
+  popup.style.display = "none";
+  addTodo();
+  renderTodos();
+});
+
 const addTodo = () => {
-  let obj = {};
-  obj.name = document.getElementById("title").value;
-  obj.description = document.getElementById("description").value;
+  const title = document.getElementById("title");
+  const description = document.getElementById("description");
+  const obj = {};
+
+  if (!title.value) {
+    obj.name = "Untitled";
+  } else {
+    obj.name = title.value;
+  }
+  obj.description = description.value;
   obj.completed = false;
   obj.id = uuidv4();
 
+  // Check radio buttons
+  if (document.getElementById("low").checked) {
+    obj.priority = "low";
+  } else if (document.getElementById("important").checked) {
+    obj.priority = "important";
+  } else if (document.getElementById("urgent").checked) {
+    obj.priority = "urgent";
+  }
+
   todoList.push(obj);
+  title.value = "";
+  description.value = "";
+  document.getElementById("low").checked = true;
 };
 
 // Render todos on screen
@@ -49,31 +79,45 @@ const renderTodos = () => {
 
     todoDisplay.appendChild(div);
   });
+
+  incompleteTodos();
 };
 
-// Click on
+// Click on checked box to change complete/incomplete
 document.querySelector(".todos").addEventListener("click", (e) => {
-  checkTodo(e);
+  if (
+    e.target.classList.contains("check-true") ||
+    e.target.classList.contains("check-false")
+  ) {
+    checkTodo(e);
+  }
 });
 
 const checkTodo = (e) => {
-  // console.log(e);
-  // const getId = e.target.parentElement.id;
-  // const index = todoList.findIndex((todo) => todo.id === getId);
-  // todoList.splice(index, 1);
-  // renderTodos();
+  const getId = e.target.parentElement.parentElement.id;
+  const index = todoList.findIndex((todo) => todo.id === getId);
 
-  if (e.target.parentElement.classList.contains("todo-check")) {
-    const getId = e.target.parentElement.parentElement;
-    const index = todoList.findIndex((todo) => (todo.id = getId));
+  todoList[index].completed = !todoList[index].completed;
+  renderTodos();
+};
 
-    todoList[index].completed = !todoList[index].completed;
+// Delete todo
+document.addEventListener("click", (e) => {
+  deleteTodo(e);
+});
+
+const deleteTodo = (e) => {
+  if (e.target.classList.contains("trash")) {
+    const getId = e.target.parentElement.id;
+    const index = todoList.findIndex((todo) => todo.id === getId);
+    todoList.splice(index, 1);
     renderTodos();
   }
 };
 
-const completedTodos = () => {
-  const completed = todoList.filter((todo) => todo.completed);
+// Display tasks that need to be done
+const incompleteTodos = () => {
+  const completed = todoList.filter((todo) => !todo.completed);
   document.querySelector(
     ".todo-list p"
   ).textContent = `Incomplete Tasks: ${completed.length}`;
