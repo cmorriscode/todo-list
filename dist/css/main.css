@@ -13,9 +13,17 @@ html {
 body {
   font-family: "Titillium Web", sans-serif;
   background: url("../../img/gradient1.jpg") no-repeat center center/cover;
+  background: -webkit-gradient(linear, right top, left bottom, from(#ee74e1), to(#3eecac)) no-repeat center center/cover;
+  background: linear-gradient(to left bottom, #ee74e1, #3eecac) no-repeat center center/cover;
   min-height: 100vh;
   position: relative;
-  padding: 12rem 0;
+}
+
+.date {
+  font-size: 4rem;
+  font-weight: 400;
+  text-align: left;
+  padding: 4rem;
 }
 
 .container {
@@ -27,7 +35,7 @@ body {
           box-shadow: 0 1.2rem 1.6rem rgba(0, 0, 0, 0.6);
   z-index: 1;
   background: #dbdbdb;
-  margin: 0 auto;
+  margin: 4rem auto 4rem auto;
   max-width: 80rem;
 }
 
@@ -39,10 +47,8 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  background: -webkit-gradient(linear, left top, right bottom, from(#fad961), to(#8f6046));
-  background: linear-gradient(to right bottom, #fad961, #8f6046);
-  background: -webkit-gradient(linear, left top, right bottom, from(#fad961), to(#f76b1c));
-  background: linear-gradient(to right bottom, #fad961, #f76b1c);
+  color: #eee;
+  background: #7e35f3;
   -webkit-box-shadow: 0 0.8rem 1.2rem rgba(0, 0, 0, 0.4);
           box-shadow: 0 0.8rem 1.2rem rgba(0, 0, 0, 0.4);
 }
@@ -62,11 +68,33 @@ body {
   text-align: center;
 }
 
-.container .todo-list .add-todo {
-  font-size: 2.4rem;
-  color: orange;
-  padding: 0.4rem 1rem;
+.container .todo-list-head .clear-completed,
+.container .todo-list-head .clear-all {
+  padding: 0.6rem 1rem;
   background: gray;
+  color: #eee;
+  font-size: 1.4rem;
+  border: none;
+  -webkit-box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.4);
+  margin: 0 0.6rem;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.container .todo-list-head .clear-completed:hover,
+.container .todo-list-head .clear-all:hover {
+  -webkit-box-shadow: 0 0.8rem 1.2rem rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0.8rem 1.2rem rgba(0, 0, 0, 0.4);
+  background: #999;
+}
+
+.container .todo-list .add-todo {
+  font-size: 3.4rem;
+  color: #8c49f8;
+  color: #eee;
+  padding: 0.4rem 1.2rem;
+  background: #11b1b1;
   display: inline-block;
   margin: 0 auto 2rem auto;
   -webkit-box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.4);
@@ -83,19 +111,9 @@ body {
           box-shadow: 0 0.8rem 1.2rem rgba(0, 0, 0, 0.4);
 }
 
-.container .todo-list .date {
-  font-size: 2rem;
-}
-
-.container .todo-list .date {
-  font-size: 1.8rem;
-  font-weight: 400;
-  text-align: left;
-}
-
 .container .todo-list .incomplete {
   font-size: 2.4rem;
-  margin: 0.4rem 0;
+  margin: 1rem 0;
 }
 
 .container .todo-list .todo-div {
@@ -105,8 +123,9 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  background: -webkit-gradient(linear, left top, right bottom, from(#fad961), to(#f76b1c));
-  background: linear-gradient(to right bottom, #fad961, #f76b1c);
+  color: #eee;
+  background: #7e35f3;
+  background: #8c49f8;
   padding: 0.4rem 0.6rem;
   margin-bottom: 1rem;
   -webkit-box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.4);
@@ -153,7 +172,7 @@ body {
 .container .todo-list .todo-div p {
   margin-left: 1.2rem;
   font-size: 1.8rem;
-  color: #222;
+  color: #ddd;
   text-align: left;
 }
 
@@ -165,10 +184,10 @@ body {
 
 .add-popup {
   position: absolute;
-  top: 40%;
+  top: 55%;
   left: 50%;
   padding: 4rem;
-  background: orange;
+  background: #7e35f3;
   display: none;
   -webkit-box-shadow: 0 0.8rem 1.2rem rgba(0, 0, 0, 0.4);
           box-shadow: 0 0.8rem 1.2rem rgba(0, 0, 0, 0.4);
@@ -177,6 +196,15 @@ body {
   min-width: 40rem;
   text-align: center;
   z-index: 100;
+  color: #eee;
+}
+
+.add-popup .exit-popup {
+  cursor: pointer;
+  font-size: 5rem;
+  position: absolute;
+  top: -1rem;
+  right: 1rem;
 }
 
 .add-popup h2 {
@@ -242,7 +270,7 @@ body {
           box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.4);
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
-  background: #106e4f;
+  background: #11b1b1;
 }
 
 .add-popup .submit-add:hover {
@@ -253,6 +281,9 @@ body {
 }
 
 @media (max-width: 500px) {
+  .date {
+    font-size: 2.4rem;
+  }
   .todo-check {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -276,22 +307,22 @@ body {
   .container {
     width: 300px !important;
     min-width: 0 !important;
-    min-height: 0 !important;
+    min-height: 500px !important;
     max-width: 300px;
-    margin: 0 auto !important;
+    margin: 0 auto 4rem auto !important;
   }
   .add-popup {
     position: absolute;
-    top: 70%;
+    top: 60%;
     left: 50%;
     padding: 4rem;
-    background: orange;
+    background: #7e35f3;
     display: none;
     -webkit-box-shadow: 0 0.8rem 1.2rem rgba(0, 0, 0, 0.4);
             box-shadow: 0 0.8rem 1.2rem rgba(0, 0, 0, 0.4);
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
-    min-width: 40rem;
+    min-width: 28rem;
     text-align: center;
     z-index: 100;
   }

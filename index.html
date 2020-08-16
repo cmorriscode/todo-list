@@ -11,12 +11,13 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="dist/css/main.css" />
-    <title>Todo List</title>
+    <title>To-do List</title>
   </head>
   <body>
     <div class="popup-container">
       <div class="add-popup">
-        <h2>Add Todo</h2>
+        <p class="exit-popup">&times;</p>
+        <h2>Add Task</h2>
         <form>
           <div class="title">
             <label for="title">Title:</label>
@@ -56,16 +57,19 @@
         </form>
       </div>
     </div>
+    <div class="date"></div>
     <div class="container">
       <header class="header">
-        <h1>Todo List</h1>
+        <h1>To-do List</h1>
         <h2>Get it done.</h2>
       </header>
       <main>
         <div class="todo-list">
-          <div class="date"></div>
-
           <div class="todo-list-head">
+            <div class="clear-buttons">
+              <button class="clear-completed">Clear Completed</button>
+              <button class="clear-all">Clear All</button>
+            </div>
             <p class="incomplete">Incomplete Tasks:</p>
             <button class="add-todo"><i class="fa fa-plus"></i></button>
           </div>

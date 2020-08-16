@@ -19,10 +19,25 @@ const storeData = () => {
 // Add todos
 const popup = document.querySelector(".add-popup");
 
+// Opens popup form to add task
 document.querySelector(".add-todo").addEventListener("click", () => {
   popup.style.display = "block";
 });
 
+// Closes popup form and resets data
+
+const closePopup = () => {
+  const title = document.getElementById("title");
+  const description = document.getElementById;
+  title.value = "";
+  description.value = "";
+  document.getElementById("low").checked = true;
+  popup.style.display = "none";
+};
+
+document.querySelector(".exit-popup").addEventListener("click", closePopup);
+
+// Adds todo information to list
 document.querySelector(".submit-add").addEventListener("click", (e) => {
   e.preventDefault();
   popup.style.display = "none";
@@ -144,6 +159,34 @@ const incompleteTodos = () => {
   ).textContent = `Incomplete Tasks: ${completed.length}`;
 };
 
+// Clear completed tasks from list
+
+const clearCompleted = () => {
+  completedTodos = todoList.filter((todo) => todo.completed);
+  completedTodos.forEach((todo) => {
+    const id = todo.id;
+    todoList.forEach((todo, i) => {
+      if (todo.id === id) {
+        todoList.splice(i, 1);
+      }
+    });
+  });
+  storeData();
+  renderTodos();
+};
+
+document
+  .querySelector(".clear-completed")
+  .addEventListener("click", clearCompleted);
+
+// Delete all todos
+const clearAll = () => {
+  todoList = [];
+  storeData();
+  renderTodos();
+};
+
+document.querySelector(".clear-all").addEventListener("click", clearAll);
 // Display current date for user
 
 const displayDate = () => {
