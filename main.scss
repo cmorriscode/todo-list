@@ -23,7 +23,11 @@ html {
 body {
   font-family: "Titillium Web", sans-serif;
   background: url("../../img/gradient1.jpg") no-repeat center center/ cover;
+
+  // width: 100%;
   min-height: 100vh;
+  position: relative;
+  padding: 12rem 0;
 }
 
 .container {
@@ -32,21 +36,21 @@ body {
   min-height: 70rem;
   background: $color-white;
   position: relative;
-  box-shadow: $shadow-normal;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  box-shadow: $shadow-rise;
+
   z-index: 1;
+  background: rgb(236, 235, 218);
+  margin: 0 auto;
+  max-width: 80rem;
 
   & header {
     padding: 3.2rem;
     display: flex;
     justify-content: space-between;
     background: linear-gradient(
-      to right,
-      rgba(250, 217, 97, 0.8),
-      rgba(247, 107, 28, 0.8)
+      to right bottom,
+      rgba(250, 217, 97, 1),
+      rgba(247, 107, 28, 1)
     );
     box-shadow: $shadow-normal;
     & h1 {
@@ -62,20 +66,49 @@ body {
 
   & .todo-list {
     padding: 2rem;
+    text-align: center;
 
-    & h3 {
-      font-size: 3rem;
-      font-weight: 400;
+    & .add-todo {
+      font-size: 2.4rem;
+      color: orange;
+      padding: 0.4rem 1rem;
+      background: gray;
+      display: inline-block;
+      margin: 0 auto 2rem auto;
+      box-shadow: $shadow-small;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+      border-radius: 0.4rem;
+
+      &:hover {
+        box-shadow: $shadow-normal;
+        // background: lightgray;
+      }
     }
-    & p {
-      font-size: 2.6rem;
-      text-align: right;
+
+    & .date {
+      font-size: 2rem;
+    }
+    & .date {
+      font-size: 1.8rem;
+      font-weight: 400;
+
+      text-align: left;
+    }
+    & .incomplete {
+      font-size: 2.4rem;
+      margin: 0.4rem 0;
     }
 
     .todo-div {
       display: flex;
       justify-content: space-between;
-      background: orange;
+      background: linear-gradient(
+        to right bottom,
+        rgba(250, 217, 97, 1),
+        rgba(247, 107, 28, 1)
+      );
       padding: 0.4rem 0.6rem;
       margin-bottom: 1rem;
       box-shadow: $shadow-small;
@@ -90,47 +123,58 @@ body {
         transition: all 0.4s;
         margin-top: 0.8rem;
         color: $color-black;
+        color: beige;
 
         &:hover {
-          color: rgb(16, 110, 79);
+          cursor: pointer;
         }
       }
 
       .check-false {
       }
       & .trash {
-        font-size: 2rem;
-        margin-left: 1rem;
+        font-size: 3rem;
+        margin-left: 1.2rem;
 
         transition: all 0.4s;
         &:hover {
-          color: rgb(110, 8, 8);
+          color: rgb(45, 46, 46);
+          cursor: pointer;
         }
       }
 
       & h4 {
         font-size: 2rem;
+        font-weight: 500;
+        text-align: left;
       }
       & p {
         margin-left: 1.2rem;
-        font-size: 1.6rem;
+        font-size: 1.8rem;
+        color: #222;
+        text-align: left;
       }
     }
   }
 }
 
+.popup-container {
+  // height: 100vh;
+  // position: relative;
+}
 .add-popup {
   position: absolute;
   top: 50%;
   left: 50%;
   padding: 4rem;
   background: orange;
-  // display: none;
+  display: none;
   box-shadow: $shadow-normal;
 
   transform: translate(-50%, -50%);
   min-width: 40rem;
   text-align: center;
+  z-index: 100;
 
   & h2 {
     font-size: 3rem;
@@ -154,8 +198,10 @@ body {
     & textarea {
       width: 100%;
       height: 10rem;
-
       padding: 0.6rem;
+      font-family: inherit;
+      font-size: inherit;
+      font-size: 1.4rem !important;
     }
   }
 
@@ -192,5 +238,46 @@ body {
       box-shadow: $shadow-normal;
       transform: translateY(-0.1rem);
     }
+  }
+}
+
+@media (max-width: 500px) {
+  .todo-check {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    & .check-true,
+    .check-false {
+      margin-bottom: 0.8rem;
+    }
+
+    & .trash {
+      margin-left: 0rem !important;
+    }
+  }
+  .body {
+    padding: 1.2rem;
+  }
+
+  .container {
+    width: 300px !important;
+    // position: static;
+
+    // transform: translate(-50%, -50%);
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: 300px;
+    margin: 0 auto !important;
+  }
+}
+
+@media (max-width: 280px) {
+  .container {
+    width: 280px !important;
+  }
+
+  .add-popup {
+    width: 260px !important;
   }
 }

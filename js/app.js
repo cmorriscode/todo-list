@@ -1,5 +1,20 @@
 // Hold the todos to be rendered on the screen
-const todoList = [];
+let todoList;
+
+// Load localStorage to populate todos
+const loadTodoList = () => {
+  if (localStorage.getItem("todos")) {
+    todoList = JSON.parse(localStorage.getItem("todos"));
+  } else {
+    todoList = [];
+  }
+};
+
+// Persist updated data to LocalStorage
+
+const storeData = () => {
+  localStorage.setItem("todos", JSON.stringify(todoList));
+};
 
 // Add todos
 const popup = document.querySelector(".add-popup");
@@ -39,9 +54,12 @@ const addTodo = () => {
   }
 
   todoList.push(obj);
+  storeData();
   title.value = "";
   description.value = "";
   document.getElementById("low").checked = true;
+  loadTodoList();
+  renderTodos();
 };
 
 // Render todos on screen
@@ -98,6 +116,8 @@ const checkTodo = (e) => {
   const index = todoList.findIndex((todo) => todo.id === getId);
 
   todoList[index].completed = !todoList[index].completed;
+  storeData();
+  loadTodoList();
   renderTodos();
 };
 
@@ -111,6 +131,7 @@ const deleteTodo = (e) => {
     const getId = e.target.parentElement.id;
     const index = todoList.findIndex((todo) => todo.id === getId);
     todoList.splice(index, 1);
+    storeData();
     renderTodos();
   }
 };
@@ -119,8 +140,18 @@ const deleteTodo = (e) => {
 const incompleteTodos = () => {
   const completed = todoList.filter((todo) => !todo.completed);
   document.querySelector(
-    ".todo-list p"
+    ".incomplete"
   ).textContent = `Incomplete Tasks: ${completed.length}`;
 };
 
+// Display current date for user
+
+const displayDate = () => {
+  document.querySelector(".date").textContent = moment().format(
+    "[Today is] dddd[,] MMMM Do[,] YYYY"
+  );
+};
+
+displayDate();
+loadTodoList();
 renderTodos();
