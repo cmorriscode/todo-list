@@ -11,7 +11,6 @@ const loadTodoList = () => {
 };
 
 // Persist updated data to LocalStorage
-
 const storeData = () => {
   localStorage.setItem("todos", JSON.stringify(todoList));
 };
@@ -25,7 +24,6 @@ document.querySelector(".add-todo").addEventListener("click", () => {
 });
 
 // Closes popup form and resets data
-
 const closePopup = () => {
   const title = document.getElementById("title");
   const description = document.getElementById;
@@ -78,7 +76,6 @@ const addTodo = () => {
 };
 
 // Render todos on screen
-
 const renderTodos = () => {
   const todoDisplay = document.querySelector(".todos");
   todoDisplay.innerHTML = "";
@@ -109,6 +106,15 @@ const renderTodos = () => {
     }
     div.setAttribute("id", todo.id);
     div.setAttribute("class", "todo-div");
+
+    // Change background depending on priority:
+    if (todo.priority === "low") {
+      div.classList.add("priority-low");
+    } else if (todo.priority === "important") {
+      div.classList.add("priority-important");
+    } else if (todo.priority === "urgent") {
+      div.classList.add("priority-urgent");
+    }
 
     todoDisplay.appendChild(div);
   });
@@ -160,7 +166,6 @@ const incompleteTodos = () => {
 };
 
 // Clear completed tasks from list
-
 const clearCompleted = () => {
   completedTodos = todoList.filter((todo) => todo.completed);
   completedTodos.forEach((todo) => {
@@ -194,6 +199,8 @@ const displayDate = () => {
     "[Today is] dddd[,] MMMM Do[,] YYYY"
   );
 };
+
+// Sort todos by priority: urgent - important - low
 
 displayDate();
 loadTodoList();

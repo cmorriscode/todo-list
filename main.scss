@@ -5,6 +5,9 @@ $color-white: #eee;
 $color-black: #111;
 $color-purple: rgb(126, 53, 243);
 $color-purple-2: rgb(140, 73, 248);
+$color-purple-low: #975bf8;
+$color-purple-important: #703ac6;
+$color-purple-urgent: #46247c;
 
 $color-tertiary: rgb(17, 177, 177);
 
@@ -26,7 +29,6 @@ html {
 
 body {
   font-family: "Titillium Web", sans-serif;
-  background: url("../../img/gradient1.jpg") no-repeat center center/ cover;
   background: linear-gradient(to left bottom, #ee74e1, #3eecac) no-repeat center
     center/cover;
   min-height: 100vh;
@@ -121,8 +123,8 @@ body {
       display: flex;
       justify-content: space-between;
       color: $color-white;
-      background: rgb(126, 53, 243);
-      background: $color-purple-2;
+      // background: rgb(126, 53, 243);
+      // background: $color-purple-2;
       padding: 0.4rem 0.6rem;
       margin-bottom: 1rem;
       box-shadow: $shadow-small;
@@ -260,6 +262,16 @@ body {
       transform: translateY(-0.1rem);
     }
   }
+}
+
+.priority-low {
+  background: $color-purple-low !important;
+}
+.priority-important {
+  background: $color-purple-important;
+}
+.priority-urgent {
+  background: $color-purple-urgent;
 }
 
 @media (max-width: 500px) {
