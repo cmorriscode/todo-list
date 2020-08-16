@@ -39,7 +39,7 @@ body {
   box-shadow: $shadow-rise;
 
   z-index: 1;
-  background: rgb(236, 235, 218);
+  background: rgb(219, 219, 219);
   margin: 0 auto;
   max-width: 80rem;
 
@@ -47,6 +47,11 @@ body {
     padding: 3.2rem;
     display: flex;
     justify-content: space-between;
+    background: linear-gradient(
+      to right bottom,
+      rgba(250, 217, 97, 1),
+      rgb(143, 96, 70)
+    );
     background: linear-gradient(
       to right bottom,
       rgba(250, 217, 97, 1),
@@ -159,12 +164,13 @@ body {
 }
 
 .popup-container {
-  // height: 100vh;
-  // position: relative;
+  height: 100vh;
+  width: 100%;
+  position: absolute;
 }
 .add-popup {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   padding: 4rem;
   background: orange;
@@ -257,7 +263,7 @@ body {
     }
   }
   .body {
-    padding: 1.2rem;
+    padding: 1rem 1rem !important;
   }
 
   .container {
@@ -269,6 +275,20 @@ body {
     min-height: 0 !important;
     max-width: 300px;
     margin: 0 auto !important;
+  }
+  .add-popup {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    padding: 4rem;
+    background: orange;
+    display: none;
+    box-shadow: $shadow-normal;
+
+    transform: translate(-50%, -50%);
+    min-width: 40rem;
+    text-align: center;
+    z-index: 100;
   }
 }
 
