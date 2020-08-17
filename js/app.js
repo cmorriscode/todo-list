@@ -67,6 +67,7 @@ const addTodo = () => {
   }
 
   todoList.push(obj);
+  sortTodos();
   storeData();
   title.value = "";
   description.value = "";
@@ -149,7 +150,7 @@ document.addEventListener("click", (e) => {
 
 const deleteTodo = (e) => {
   if (e.target.classList.contains("trash")) {
-    const getId = e.target.parentElement.id;
+    const getId = e.target.parentElement.parentElement.id;
     const index = todoList.findIndex((todo) => todo.id === getId);
     todoList.splice(index, 1);
     storeData();
@@ -192,8 +193,8 @@ const clearAll = () => {
 };
 
 document.querySelector(".clear-all").addEventListener("click", clearAll);
-// Display current date for user
 
+// Display current date for user
 const displayDate = () => {
   document.querySelector(".date").textContent = moment().format(
     "[Today is] dddd[,] MMMM Do[,] YYYY"
@@ -201,7 +202,32 @@ const displayDate = () => {
 };
 
 // Sort todos by priority: urgent - important - low
+const sortTodos = () => {
+  todoList.sort((a, b) => {
+    const isImportant = (todo) =>
+      todo.priority !== "urgent" && todo.priority === "important";
+    const isLow = (todo) => todo.priority === "low";
 
+    if (a.priority === "urgent" && b.priority !== "urgent") {
+      return -1;
+    } else if (b.priority === "urgent" && a.priority !== "urgent") {
+      return 1;
+    } else if (a.priority === "urgent" && b.priority === "urgent") {
+      return 0;
+    } else if (isImportant(a) && !isImportant(b)) {
+      return -1;
+    } else if (!isImportant(a) && isImportant(b)) {
+      return 0;
+    } else if (isLow(a) && !isLow(b)) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
+  storeData();
+};
+
+// Opening functions
 displayDate();
 loadTodoList();
 renderTodos();

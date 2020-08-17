@@ -1,4 +1,104 @@
 @import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap");
+@media (max-width: 500px) {
+  .date {
+    font-size: 2.8rem !important;
+  }
+  .todo-check {
+    margin-left: 0.6rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    text-align: center;
+  }
+  .todo-check .check-true,
+  .todo-check .check-false {
+    margin-bottom: 0.8rem;
+  }
+  .todo-check .trash {
+    margin-left: 0rem !important;
+  }
+  .body {
+    padding: 1rem 1rem !important;
+  }
+  .container {
+    width: 380px !important;
+    min-width: 0 !important;
+    min-height: 650px !important;
+    max-width: 300px;
+    margin: 0 auto 4rem auto !important;
+  }
+  .add-popup {
+    position: absolute;
+    top: 250% !important;
+    padding: 4rem;
+    min-width: 36rem !important;
+    text-align: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .date {
+    font-size: 2rem;
+  }
+  .header h1 {
+    font-size: 2.6rem !important;
+  }
+  .header h2 {
+    font-size: 2.6rem !important;
+  }
+  .todo-check {
+    margin-left: 0.6rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    text-align: center;
+  }
+  .todo-check .check-true,
+  .todo-check .check-false {
+    margin-bottom: 0.8rem;
+  }
+  .todo-check .trash {
+    margin-left: 0rem !important;
+  }
+  .container {
+    width: 320px !important;
+    min-width: 0 !important;
+    min-height: 600px !important;
+    max-width: 300px;
+    margin: 0 auto 4rem auto !important;
+  }
+  .add-popup {
+    position: absolute;
+    top: 215% !important;
+    display: none;
+    max-width: 28rem;
+    text-align: center;
+    z-index: 100;
+    min-width: 30rem !important;
+    width: 60%;
+    padding: 2.8rem 2rem !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .container {
+    width: 270px !important;
+  }
+  .add-popup {
+    width: 260px !important;
+    min-width: 260px !important;
+  }
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -16,6 +116,7 @@ body {
   background: linear-gradient(to left bottom, #ee74e1, #3eecac) no-repeat center center/cover;
   min-height: 100vh;
   position: relative;
+  padding-bottom: 8rem;
 }
 
 .date {
@@ -23,6 +124,7 @@ body {
   font-weight: 400;
   text-align: left;
   padding: 4rem;
+  font-family: "Noto Sans JP", sans-serif;
 }
 
 .container {
@@ -93,7 +195,7 @@ body {
   color: #8c49f8;
   color: #eee;
   padding: 0.4rem 1.2rem;
-  background: #11b1b1;
+  background: #2a88ad;
   display: inline-block;
   margin: 0 auto 2rem auto;
   -webkit-box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.4);
@@ -174,14 +276,12 @@ body {
 }
 
 .popup-container {
-  height: 100vh;
-  width: 100%;
-  position: absolute;
+  position: relative;
 }
 
 .add-popup {
   position: absolute;
-  top: 55%;
+  top: 50%;
   left: 50%;
   padding: 4rem;
   background: #7e35f3;
@@ -194,6 +294,7 @@ body {
   text-align: center;
   z-index: 100;
   color: #eee;
+  top: 300%;
 }
 
 .add-popup .exit-popup {
@@ -259,15 +360,16 @@ body {
   margin-top: 1rem !important;
   text-align: center;
   margin: 0 auto;
-  padding: 0.6rem 0.8rem;
+  padding: 1rem 1.2rem;
   font-size: 1.6rem;
-  background: #eee;
+  font-weight: 500;
   color: #eee;
   -webkit-box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.4);
           box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.4);
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
-  background: #11b1b1;
+  background: #2a88ad;
+  border: none;
 }
 
 .add-popup .submit-add:hover {
@@ -278,7 +380,7 @@ body {
 }
 
 .priority-low {
-  background: #975bf8 !important;
+  background: #975bf8;
 }
 
 .priority-important {
@@ -287,62 +389,5 @@ body {
 
 .priority-urgent {
   background: #46247c;
-}
-
-@media (max-width: 500px) {
-  .date {
-    font-size: 2.4rem;
-  }
-  .todo-check {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    text-align: center;
-  }
-  .todo-check .check-true,
-  .todo-check .check-false {
-    margin-bottom: 0.8rem;
-  }
-  .todo-check .trash {
-    margin-left: 0rem !important;
-  }
-  .body {
-    padding: 1rem 1rem !important;
-  }
-  .container {
-    width: 300px !important;
-    min-width: 0 !important;
-    min-height: 500px !important;
-    max-width: 300px;
-    margin: 0 auto 4rem auto !important;
-  }
-  .add-popup {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    padding: 4rem;
-    background: #7e35f3;
-    display: none;
-    -webkit-box-shadow: 0 0.8rem 1.2rem rgba(0, 0, 0, 0.4);
-            box-shadow: 0 0.8rem 1.2rem rgba(0, 0, 0, 0.4);
-    -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-    min-width: 28rem;
-    text-align: center;
-    z-index: 100;
-  }
-}
-
-@media (max-width: 280px) {
-  .container {
-    width: 280px !important;
-  }
-  .add-popup {
-    width: 260px !important;
-  }
 }
 /*# sourceMappingURL=main.css.map */

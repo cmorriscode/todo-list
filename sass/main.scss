@@ -1,0 +1,276 @@
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap");
+@import "media";
+
+// Variables
+$color-white: #eee;
+$color-black: #111;
+$color-purple: rgb(126, 53, 243);
+$color-purple-2: rgb(140, 73, 248);
+$color-purple-low: #975bf8;
+$color-purple-important: #703ac6;
+$color-purple-urgent: #46247c;
+
+$color-tertiary: rgb(17, 177, 177);
+$color-tertiary: rgb(42, 136, 173);
+
+// Shadows
+$shadow-small: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.4);
+$shadow-normal: 0 0.8rem 1.2rem rgba(0, 0, 0, 0.4);
+$shadow-rise: 0 1.2rem 1.6rem rgba(0, 0, 0, 0.6);
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Titillium Web", sans-serif;
+  background: linear-gradient(to left bottom, #ee74e1, #3eecac) no-repeat center
+    center/cover;
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 8rem;
+}
+
+.date {
+  font-size: 4rem;
+  font-weight: 400;
+  text-align: left;
+  padding: 4rem;
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+.container {
+  min-width: 70rem;
+  min-height: 70rem;
+  background: $color-white;
+  position: relative;
+  box-shadow: $shadow-rise;
+  z-index: 1;
+  background: rgb(219, 219, 219);
+  margin: 4rem auto 4rem auto;
+  max-width: 80rem;
+
+  & header {
+    padding: 3.2rem;
+    display: flex;
+    justify-content: space-between;
+    color: $color-white;
+    background: $color-purple;
+    box-shadow: $shadow-normal;
+    & h1 {
+      font-size: 3.2rem;
+      font-weight: 400;
+    }
+
+    & h2 {
+      font-size: 3.2rem;
+      font-weight: 500;
+    }
+  }
+
+  & .todo-list {
+    padding: 2rem;
+    text-align: center;
+
+    &-head {
+      & .clear-completed,
+      & .clear-all {
+        padding: 0.6rem 1rem;
+        background: gray;
+        color: $color-white;
+        font-size: 1.4rem;
+        border: none;
+        box-shadow: $shadow-small;
+        margin: 0 0.6rem;
+        transition: all 0.4s;
+
+        &:hover {
+          box-shadow: $shadow-normal;
+          background: #999;
+        }
+      }
+    }
+
+    & .add-todo {
+      font-size: 3.4rem;
+      color: $color-purple-2;
+      color: $color-white;
+      padding: 0.4rem 1.2rem;
+      background: $color-tertiary;
+      display: inline-block;
+      margin: 0 auto 2rem auto;
+      box-shadow: $shadow-small;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+      border-radius: 0.4rem;
+
+      &:hover {
+        box-shadow: $shadow-normal;
+      }
+    }
+
+    & .incomplete {
+      font-size: 2.4rem;
+      margin: 1rem 0;
+    }
+
+    .todo-div {
+      display: flex;
+      justify-content: space-between;
+      color: $color-white;
+      padding: 0.4rem 0.6rem;
+      margin-bottom: 1rem;
+      box-shadow: $shadow-small;
+
+      & .todo-text {
+        margin-left: 0.8rem;
+      }
+
+      & .check-true,
+      .check-false {
+        font-size: 3.4rem;
+        transition: all 0.4s;
+        margin-top: 0.8rem;
+        color: $color-black;
+        color: beige;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      & .trash {
+        font-size: 3rem;
+        margin-left: 1.2rem;
+
+        transition: all 0.4s;
+        &:hover {
+          color: rgb(45, 46, 46);
+          cursor: pointer;
+        }
+      }
+
+      & h4 {
+        font-size: 2rem;
+        font-weight: 500;
+        text-align: left;
+      }
+      & p {
+        margin-left: 1.2rem;
+        font-size: 1.8rem;
+        color: #ddd;
+        text-align: left;
+      }
+    }
+  }
+}
+
+.popup-container {
+  position: relative;
+}
+.add-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 4rem;
+  background: $color-purple;
+  display: none;
+  box-shadow: $shadow-normal;
+  transform: translate(-50%, -50%);
+  min-width: 40rem;
+  text-align: center;
+  z-index: 100;
+  color: $color-white;
+
+  top: 300%;
+  & .exit-popup {
+    cursor: pointer;
+    font-size: 5rem;
+    position: absolute;
+    top: -1rem;
+    right: 1rem;
+  }
+
+  & h2 {
+    font-size: 3rem;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.1rem;
+  }
+
+  & div {
+    padding: 1rem 0;
+    & label {
+      display: block;
+      font-size: 2rem;
+      text-align: left;
+    }
+    & input {
+      width: 100%;
+      font-size: 1.6rem !important;
+      padding: 0.6rem;
+    }
+    & textarea {
+      width: 100%;
+      height: 10rem;
+      padding: 0.6rem;
+      font-family: inherit;
+      font-size: inherit;
+      font-size: 1.4rem !important;
+    }
+  }
+
+  .priority {
+    padding: 0;
+    h5 {
+      font-size: 2.4rem;
+      font-weight: 400;
+      text-align: center;
+    }
+
+    & label {
+      font-size: 1.8rem !important;
+      display: inline-block !important;
+    }
+    & input {
+      width: 10% !important;
+    }
+  }
+
+  & .submit-add {
+    margin-top: 1rem !important;
+    text-align: center;
+    margin: 0 auto;
+    padding: 1rem 1.2rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: $color-white;
+    box-shadow: $shadow-small;
+    transition: all 0.4s;
+    background: $color-tertiary;
+    border: none;
+
+    &:hover {
+      box-shadow: $shadow-normal;
+      transform: translateY(-0.1rem);
+    }
+  }
+}
+
+.priority-low {
+  background: $color-purple-low;
+}
+.priority-important {
+  background: $color-purple-important;
+}
+.priority-urgent {
+  background: $color-purple-urgent;
+}
